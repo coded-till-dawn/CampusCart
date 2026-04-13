@@ -4,12 +4,12 @@ run = "cd backend && npm install && npm start"
 
 [env]
 MONGODB_URI = "mongodb+srv://75wHpP30sFpB9rHO:DUtDubfsrFKcWUvz@campuscart.sgyawh5.mongodb.net/campuscart"
-PORT = "80"
+PORT = "3000"
 NODE_ENV = "production"
 
 [nix]
 channel = "stable-23_11"
 
 [[ports]]
-localPort = 80
+localPort = 3000
 externalPort = 80
