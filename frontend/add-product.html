@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Product - CampusCart</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-shopping-cart"></i> CampusCart
+      </a>
+      <div class="search-bar">
+        <input type="text" placeholder="Search items..." disabled />
+      </div>
+      <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">
+          <i class="fas fa-home"></i> Marketplace
+        </a>
+        <a href="add-product.html" class="nav-btn active">
+          <i class="fas fa-plus"></i> Sell
+        </a>
+        <a href="my-listings.html" class="nav-btn">
+          <i class="fas fa-list"></i> My Listings
+        </a>
+        <a href="wishlist.html" class="nav-btn">
+          <i class="fas fa-heart"></i> Wishlist
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="form-container">
+      <h1 style="margin-bottom: 2rem; color: var(--dark-color);">
+        <i class="fas fa-plus-circle"></i> Add a New Product
+      </h1>
+
+      <form id="addProductForm">
+        <div class="form-group">
+          <label for="title">
+            <i class="fas fa-heading"></i> Product Title *
+          </label>
+          <input type="text" id="title" name="title" placeholder="e.g., Used Textbook - CS101" required />
+        </div>
+
+        <div class="form-group">
+          <label for="price">
+            <i class="fas fa-tag"></i> Price (₹) *
+          </label>
+          <input type="number" id="price" name="price" placeholder="500" min="0" step="10" required />
+        </div>
+
+        <div class="form-group">
+          <label for="category">
+            <i class="fas fa-list"></i> Category *
+          </label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="Books">Books</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Sports">Sports</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">
+            <i class="fas fa-align-left"></i> Description *
+          </label>
+          <textarea id="description" name="description" placeholder="Describe your product in detail..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image">
+            <i class="fas fa-image"></i> Image URL *
+          </label>
+          <input type="url" id="image" name="image" placeholder="https://example.com/image.jpg" required />
+        </div>
+
+        <div class="form-group">
+          <label for="sellerName">
+            <i class="fas fa-user"></i> Your Name *
+          </label>
+          <input type="text" id="sellerName" name="sellerName" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="contact">
+            <i class="fas fa-phone"></i> Contact (Phone/Email) *
+          </label>
+          <input type="text" id="contact" name="contact" placeholder="9876543210 or email@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">
+            <i class="fas fa-map-marker-alt"></i> Campus Location *
+          </label>
+          <input type="text" id="location" name="location" placeholder="e.g., Hostel A, Block B" required />
+        </div>
+
+        <button type="submit" class="form-submit">
+          <i class="fas fa-arrow-right"></i> Publish Product
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    const form = document.getElementById('addProductForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        title: document.getElementById('title').value,
+        price: document.getElementById('price').value,
+        category: document.getElementById('category').value,
+        description: document.getElementById('description').value,
+        image: document.getElementById('image').value,
+        sellerName: document.getElementById('sellerName').value,
+        contact: document.getElementById('contact').value,
+        location: document.getElementById('location').value,
+      };
+
+      try {
+        await itemsAPI.create(formData);
+        showToast('Product added successfully!', 'success');
+        setTimeout(() => (window.location.href = 'my-listings.html'), 1500);
+      } catch (error) {
+        showToast(getErrorMessage(error), 'error');
+      }
+    });
+  </script>
+</body>
+</html>
