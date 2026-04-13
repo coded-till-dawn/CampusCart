@@ -1,6 +1,9 @@
 modules = ["nodejs-20"]
-run = "cd backend && npm start"
-entrypoint = "backend/server.js"
+
+[build]
+build = "cd backend && npm install"
+
+run = "bash start.sh"
 
 [env]
 MONGODB_URI = "mongodb+srv://75wHpP30sFpB9rHO:DUtDubfsrFKcWUvz@campuscart.sgyawh5.mongodb.net/campuscart"
@@ -9,3 +12,7 @@ NODE_ENV = "production"
 
 [nix]
 channel = "stable-23_11"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
