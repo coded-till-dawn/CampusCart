@@ -1,0 +1,13 @@
+{
+  "name": "campuscart",
+  "version": "1.0.0",
+  "description": "Student Marketplace Web Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install-all": "cd backend && npm install"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
