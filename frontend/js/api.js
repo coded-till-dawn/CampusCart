@@ -1,6 +1,8 @@
 // API layer for backend communication
 
 const API_URL = 'http://localhost:5000/api';
+// File: frontend/js/api.js
+const BASE_URL = 'https://campuscart-backend.replit.dev/api';
 
 const apiCall = async (method, endpoint, data = null) => {
   try {
